@@ -8,10 +8,10 @@
 
 <!-- These are our listeners that start on deployment, used for configuration -->
 	<listener>
-		<listener-class>com.bbc.remarc.servlet.MongoServletContextListener</listener-class>
+		<listener-class>net.atos.mobile.roadshow.servlet.MongoServletContextListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.bbc.remarc.servlet.ResourceServletContextListener</listener-class>
+		<listener-class>net.atos.mobile.roadshow.servlet.ResourceServletContextListener</listener-class>
 	</listener>
          
 </web-app>
