@@ -1,0 +1,16 @@
+application: 
+  image: atos-dwp-roadshow
+  ports:
+  - "8080:8080" 
+  links: 
+  - database
+  environment:
+  - LOCAL_MONGODB_DB_HOST=database
+
+database: 
+  image: mongo
+  command: --smallfiles
+  volumes:
+  - ~/mongo-data-rd:/data/db
+  expose: 
+  - "27017"

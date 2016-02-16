@@ -1,3 +1,3 @@
-The OpenShift `jbossews` cartridge documentation can be found at:
+Local docker build:
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#tomcat
+docker -Pdocker clean install docker:build
