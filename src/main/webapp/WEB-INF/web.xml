@@ -6,12 +6,9 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          metadata-complete="false">
 
-<!-- These are our listeners that start on deployment, used for configuration -->
+	<!-- These are our listeners that start on deployment, used for configuration -->
 	<listener>
 		<listener-class>net.atos.mobile.roadshow.servlet.MongoServletContextListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>net.atos.mobile.roadshow.servlet.ResourceServletContextListener</listener-class>
 	</listener>
          
 </web-app>

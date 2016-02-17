@@ -48,6 +48,7 @@ public class MongoClient {
 			if (host == null || "".equals(host)) {
 				log.info("Not running on OpenShift. Falling back to local mongodb");
 				local = true;
+				host = "database";
 			} else {
 
 				log.debug("Retrieved host from OpenShift");
@@ -87,8 +88,8 @@ public class MongoClient {
 			db = System.getenv(Configuration.ENV_MONGO_DB_LOCAL);
 			
 			if (db == null || "".equals(db)) {
-				log.debug("No database found in environment variables, assuming \"remarc\"");
-				db = "remarc";
+				log.debug("No database found in environment variables, assuming \"roadshow\"");
+				db = "roadshow";
 			}
 		}
 		

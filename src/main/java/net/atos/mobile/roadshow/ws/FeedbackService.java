@@ -33,7 +33,7 @@ public class FeedbackService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listFeedback() {
 
-		log.debug("getAll()");
+		log.debug("listFeedback()");
 		DB db = MongoClient.getDB();
 		DBCursor results = null;
 
@@ -41,12 +41,12 @@ public class FeedbackService {
 			db.requestStart();
 			results = db.getCollection(COLLECTION_NAME).find(
 					BasicDBObjectBuilder.start().get());
-
+		
 		} finally {
 			db.requestDone();
 		}
 
-		return Response.ok(results.toString()).build();
+		return Response.ok(results.toArray().toString()).build();
 	}
 
 	@POST
