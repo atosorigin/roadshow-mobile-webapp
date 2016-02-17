@@ -21,9 +21,18 @@ public class MongoClient {
 
 	private static Mongo mongo;
 	
+	private static DB mongoDB;
+	
 	private static boolean local;
 	
 	private static boolean authenticated;
+	
+	private static String username;
+	private static String password;
+	private static String db;
+	private static String host;
+	private static Integer port;
+
 
 	private MongoClient() {
 	}
@@ -34,26 +43,36 @@ public class MongoClient {
 	 * @return
 	 * @throws UnknownHostException
 	 */
-	public static Mongo connect() {
+	public static synchronized Mongo connect() {
 
 		if (mongo == null) {
 
 			log.debug("Creating new MongoDB connection");
-			
-			String host = System.getenv(Configuration.ENV_MONGO_HOST_OPENSHIFT);
-			String mongoport = "27017";
-						
-			int port = Integer.decode(mongoport);
 
+			host = System.getenv(Configuration.ENV_MONGO_HOST_OPENSHIFT);
+			
 			if (host == null || "".equals(host)) {
 				log.info("Not running on OpenShift. Falling back to local mongodb");
 				local = true;
 				host = "database";
+
+				String mongoport = "27017";							
+				port = Integer.decode(mongoport);
+				
+				username = System.getenv(Configuration.ENV_MONGO_USER_LOCAL);
+				password = System.getenv(Configuration.ENV_MONGO_PWD_LOCAL);
+				db = "roadshow";
+				
 			} else {
 
 				log.debug("Retrieved host from OpenShift");
 
-				mongoport = System.getenv("OPENSHIFT_MONGODB_DB_PORT");				
+				username = System.getenv(Configuration.ENV_MONGO_USER_OPENSHIFT);
+				password = System.getenv(Configuration.ENV_MONGO_PWD_OPENSHIFT);				
+				db = System.getenv(Configuration.ENV_MONGO_DB_OPENSHIFT);
+				
+				
+				String mongoport = System.getenv("OPENSHIFT_MONGODB_DB_PORT");				
 				port = Integer.decode(mongoport);
 			}
 
@@ -71,22 +90,19 @@ public class MongoClient {
 	 * Get hold of the database instance
 	 * @return
 	 */
-	public static DB getDB() {
+	public static synchronized DB getDB() {
 		
-		if (mongo == null) {
+		if (mongoDB == null) {
 			
-			connect();
+			if (mongo == null) {
+				connect();
+			}
+			
+			mongoDB = mongo.getDB(db);
 		}
 		
-		String user = System.getenv(Configuration.ENV_MONGO_USER_OPENSHIFT);
-		String password = System.getenv(Configuration.ENV_MONGO_PWD_OPENSHIFT);				
-		String db = System.getenv(Configuration.ENV_MONGO_DB_OPENSHIFT);
-		
 		if (local) {
-			user = System.getenv(Configuration.ENV_MONGO_USER_LOCAL);
-			password = System.getenv(Configuration.ENV_MONGO_PWD_LOCAL);
-			db = System.getenv(Configuration.ENV_MONGO_DB_LOCAL);
-			
+		
 			if (db == null || "".equals(db)) {
 				log.debug("No database found in environment variables, assuming \"roadshow\"");
 				db = "roadshow";
@@ -100,7 +116,7 @@ public class MongoClient {
 		if (!authenticated && !local) {
 			
 			log.debug("Not authenticated against database and not running locally. Authenticating now.");
-			authenticated = mongoDB.authenticate(user, password.toCharArray());
+			authenticated = mongoDB.authenticate(username, password.toCharArray());
 			
 			if (!authenticated) {
 				throw new RuntimeException("Failed to authenticate against db");
