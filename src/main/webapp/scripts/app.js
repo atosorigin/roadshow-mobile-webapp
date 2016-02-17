@@ -2,6 +2,7 @@
 
 (function() {
 	var app = angular.module('roadshowApp', [ 
-		'roadshowApp.controllers']);
+		'roadshowApp.controllers',
+		'ngMessages']);
 
 })();
