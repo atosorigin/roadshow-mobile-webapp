@@ -9,9 +9,26 @@
 </head>
 </head>
 <body>
-	<section class="container">
-		<h2>Feedback Form</h2>
+	<div class="page-header">
+		<header class="container">
+			<nav class="navbar navbar-default nav-link navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<img src="images/AtosLogo.png" alt="Atos Logo"
+							height="80" width="130">
+					</div>
+				</div>
+			</nav>
+		</header>
+	</div>
 
+	<section class="container">
+	
+		<div class="page-header">
+		  <h3>Feedback Form</h3>
+		  <small>Please enter feedback below.</small>
+		</div>
+		
 		<div ng-controller="FeedbackController as feedbackCtrl">
 			<form name="form" role="form">
 				<div class="form-group">
@@ -21,8 +38,8 @@
 				</div>
 				<div class="form-group">
 					<label for="selectLocation">Location:</label> <select
-						ng-model="feedback.location" id="selectLocation"
-						name="location" class="form-control">
+						ng-model="feedback.location" id="selectLocation" name="location"
+						class="form-control">
 						<option value="">---Please select---</option>
 						<option value="option-1">Stockton</option>
 						<option value="option-2">Durham</option>
@@ -31,20 +48,19 @@
 				<div class="form-group">
 					<label for="inputIdNumber">ID Number:</label> <input
 						id="inputIdNumber" class="form-control" type="text"
-						ng-model="feedback.idNumber"
-						name="idNumber" />
+						ng-model="feedback.idNumber" name="idNumber" />
 				</div>
 				<div class="form-group">
 					<label for="inputEmail">Email Address:</label> <input
-						class="form-control" id="inputEmail" type="text" ng-model="feedback.email"
-						name="email" />
+						class="form-control" id="inputEmail" type="email"
+						ng-model="feedback.email" name="email" />
 
 				</div>
 				<div class="form-group">
 					<label for="inputAction">Action:</label>
 					<div class="controls">
-						<input type="text" ng-model="feedback.action"
-							name="action" id="inputAction" class="form-control" />
+						<input type="text" ng-model="feedback.action" name="action"
+							id="inputAction" class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -76,8 +92,8 @@
 				<div class="form-group">
 					<label for="selectDate">Date:</label>
 					<div class="controls">
-						<input type="date" ng-model="date" name="date"
-							id="selectDate" class="form-control" />
+						<input type="date" ng-model="date" name="date" id="selectDate"
+							class="form-control" />
 					</div>
 				</div>
 				<input type="button" value="Reset" ng-click="reset()"
@@ -86,6 +102,16 @@
 					class="btn btn-primary pull-right">Send</button>
 			</form>
 		</div>
+
+		<!-- 
+		<div class="alert alert-success">
+			<strong>Success!</strong> The feedback was successfully saved.
+		</div>
+
+		<div class="alert alert-danger">
+			<strong>Error!</strong> An error occurred when saving the feedback.
+		</div> -->
+
 	</section>
 
 	<script src="libs/jquery/dist/jquery.min.js"></script>
