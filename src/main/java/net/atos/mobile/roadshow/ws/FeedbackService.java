@@ -1,5 +1,7 @@
 package net.atos.mobile.roadshow.ws;
 
+import java.util.Date;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -9,7 +11,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
-
+import com.mongodb.BasicDBObject;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -39,9 +41,13 @@ public class FeedbackService {
 
 		try {
 			db.requestStart();
-			results = db.getCollection(COLLECTION_NAME).find(
-					BasicDBObjectBuilder.start().get());
-		
+			
+			DBObject allQuery = new BasicDBObject();
+			DBObject removeIdProjection = new BasicDBObject("_id", 0);
+			
+			results = db.getCollection(COLLECTION_NAME).find(allQuery, 
+					removeIdProjection);
+			
 		} finally {
 			db.requestDone();
 		}
@@ -53,6 +59,8 @@ public class FeedbackService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveFeedback(String feedback) {
 
+		Date now = new Date();
+		
 		log.debug("saveFeedback " + feedback);
 
 		DB db = MongoClient.getDB();
@@ -63,6 +71,8 @@ public class FeedbackService {
 
 			DBObject dbObject = (DBObject) JSON
 					.parse(feedback); // Check that this works
+			
+			dbObject.put("date", now);
 
 			DBCollection feedbackColl = db.getCollection(COLLECTION_NAME);
 

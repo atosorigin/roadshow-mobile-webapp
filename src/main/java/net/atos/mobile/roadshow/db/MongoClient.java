@@ -68,7 +68,7 @@ public class MongoClient {
 	}
 	
 	/**
-	 * Get hold of the remarc database instance
+	 * Get hold of the database instance
 	 * @return
 	 */
 	public static DB getDB() {
