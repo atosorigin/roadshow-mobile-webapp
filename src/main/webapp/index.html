@@ -50,10 +50,10 @@
 				</div>
 				<div class="form-group">
 					<label for="inputEmail">Email Address:</label> <input class="form-control" id="inputEmail" type="email"
-						ng-model="feedback.email" name="email" />
+						ng-model="feedback.email" name="email" required/>
 					<div class="help-block" ng-messages="form.email.$error" ng-show="form.email.$touched">
 						<p ng-message="required">This field is required</p>
-						<p ng-message="valid">This email address is invalid</p>
+						<p ng-message="email">This email address is invalid</p>
 					</div>
 				</div>
 				<div class="form-group">
