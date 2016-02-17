@@ -1,19 +1,100 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="roadshowApp">
 <head>
-  <meta charset="utf-8">
-  <title>DWP Tech Roadshow Feedback</title>
- 
+<meta charset="utf-8">
+<title>DWP Roadshow Feedback</title>
+<head>
+  <link href="libs/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet" />
+</head>
 </head>
 <body>
+	<section class="container">
+		<h2>Feedback Form</h2>
 
-<section class='container'>
-       
-       <h1>Form goes here</h1>
+		<div ng-controller="FeedbackController as feedbackCtrl">
+			<form name="form" role="form">
+				<div class="form-group">
+					<label for="inputname">Name:</label> <input type="text"
+						name="inputname" ng-model="feedback.name" class="form-control"
+						required />
+				</div>
+				<div class="form-group">
+					<label for="selectLocation">Location:</label> <select
+						valid-location="" ng-model="feedback.location" id="selectLocation"
+						name="location" class="form-control">
+						<option value="">---Please select---</option>
+						<option value="option-1">Stockton</option>
+						<option value="option-2">Durham</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="inputIdnum">ID Number:</label> <input
+						class="form-control" type="text" valid-idnum=""
+						ng-model="feedback.idNumber" name="idNumber" />
+				</div>
+				<div class="form-group">
+					<label for="email">Email Address:</label> <input
+						class="form-control" type="text" ng-model="feedback.email"
+						name="email" />
 
-   <footer>
-     <div class="logo"><a href="https://www.openshift.com/"></a></div>
-   </footer>
-</section>
+				</div>
+				<div class="form-group">
+					<label for="inputAction">Action:</label>
+					<div class="controls">
+						<input type="text" valid-action="" ng-model="feedback.action"
+							name="action" id="inputAction" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputActionOwner">Action Owner:</label>
+					<div class="controls">
+						<input type="text" ng-model="feedbac.actionOwner"
+							name="actionOwner" id="inputActionOwner" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="selectStatus">Status:</label>
+					<div class="controls">
+						<select ng-model="feedback.status" id="selectStatus" name="status"
+							class="form-control">
+							<option value="">---Please select---</option>
+							<option value="option-1">Active</option>
+							<option value="option-2">On Hold</option>
+							<option value="option-3">Complete</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputComments">Comments:</label>
+					<div class="controls">
+						<textarea valid-comment="" ng-model="feedback.comments"
+							name="comments" id="inputComments" class="form-control"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="selectDate">Date:</label>
+					<div class="controls">
+						<input type="date" valid-date="" ng-model="date" name="date"
+							id="selectDate" class="form-control" />
+					</div>
+				</div>
+				<input type="button" value="Reset" ng-click="reset()"
+					class="btn btn-danger pull-left" />
+				<button ng-click="sendFeedback()" ng-disabled="!form.$valid"
+					class="btn btn-primary pull-right">Send</button>
+			</form>
+		</div>
+	</section>
+
+	<script
+		src="libs/jquery/dist/jquery.min.js"></script>
+	<script
+		src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="libs/angular/angular.js"></script>
+
+	<script src="scripts/app.js" type="text/javascript"></script>
+	<script src="scripts/controllers.js" type="text/javascript"></script>
 </body>
 </html>
