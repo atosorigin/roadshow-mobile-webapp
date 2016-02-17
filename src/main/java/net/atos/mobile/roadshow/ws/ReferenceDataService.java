@@ -1,6 +1,9 @@
 package net.atos.mobile.roadshow.ws;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
@@ -12,6 +15,7 @@ import com.mongodb.DBObject;
 
 import net.atos.mobile.roadshow.db.MongoClient;
 
+@Path("/")
 public class ReferenceDataService {
 	
 	private static final String LOCATION_COLLECTION_NAME = "locations";
@@ -20,12 +24,16 @@ public class ReferenceDataService {
 
 	private static Logger log = Logger.getLogger(ReferenceDataService.class);
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/locations")
 	public Response listLocations() {
 		log.debug("listLocations");
 		return Response.ok(getReferenceData(LOCATION_COLLECTION_NAME)).build();
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/statuses")
 	public Response listStatuses() {
 		log.debug("listStatuses");
