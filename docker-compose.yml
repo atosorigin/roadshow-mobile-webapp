@@ -14,3 +14,5 @@ database:
   - ~/mongo-data-rd:/data/db
   expose: 
   - "27017"
+  ports:
+  - "27017:27107"

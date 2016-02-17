@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
