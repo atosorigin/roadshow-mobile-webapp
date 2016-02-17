@@ -9,11 +9,11 @@ angular.module('roadshowApp.controllers', []).controller('FeedbackController', [
 	function($http, $log, $timeout, $location, $scope) {
 
 		$log.debug("FeedbackController loaded");
-    $scope.feedback= {};
+		$scope.feedback= {};
     
-    $scope.sendFeedback = function() {
-      alert('Sending feedback ' + $scope.feedback.name);
-    };
+	    $scope.sendFeedback = function() {
+	      alert('Sending feedback ' + $scope.feedback.name);
+	    };
   
 
 	} ]);
