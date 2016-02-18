@@ -7,6 +7,7 @@
 <link href="libs/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
 	<div class="page-header">
@@ -21,24 +22,45 @@
 			</nav>
 		</header>
 	</div>
-	<section class="container-fluid">
+	<section id="pageTop" class="container-fluid">
 		<div class="page-header">
 			<h3>Feedback</h3>
 			<small>Please enter feedback below.</small>
 		</div>
+
 		<div class="col-md-3"></div>
 		<div class="col-md-6"
 			ng-controller="FeedbackController as feedbackCtrl">
+
+			<div class="row">
+				<div class="alert alert-success alert-dismissible" ng-show="success">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong>
+					The feedback was successfully sent.
+				</div>
+
+				<div class="alert alert-danger alert-dismissible" ng-show="error">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span class="glyphicon glyphicon-remove"></span> <strong>Error!</strong>
+					An error occurred when saving the feedback.
+				</div>
+			</div>
+
 			<form name="form" role="form">
 				<div class="form-group">
 					<label for="inputName">Name:</label> <input type="text" name="name"
-						id="inputName" ng-model="feedback.name" class="form-control"
-						required />
+						id="inputName" ng-model="feedback.name" class="form-control" />
 
-					<div class="help-block" ng-messages="form.name.$error"
+					<!-- <div class="help-block" ng-messages="form.name.$error"
 						ng-show="form.name.$touched">
 						<p ng-message="required">This field is required</p>
-					</div>
+					</div> -->
 
 				</div>
 				<div class="form-group">
@@ -57,12 +79,12 @@
 				<div class="form-group">
 					<label for="inputEmail">Email Address:</label> <input
 						class="form-control" id="inputEmail" type="email"
-						ng-model="feedback.email" name="email" required />
-					<div class="help-block" ng-messages="form.email.$error"
+						ng-model="feedback.email" name="email" />
+					<!-- <div class="help-block" ng-messages="form.email.$error"
 						ng-show="form.email.$touched">
 						<p ng-message="required">This field is required</p>
 						<p ng-message="email">This email address is invalid</p>
-					</div>
+					</div> -->
 				</div>
 				<div class="form-group">
 					<label for="inputAction">Action:</label>
@@ -94,6 +116,8 @@
 							name="comments" id="inputComments" class="form-control"></textarea>
 					</div>
 				</div>
+				
+				<!-- 
 				<div class="form-group">
 					<label for="selectDate">Date:</label>
 					<div class="controls">
@@ -101,6 +125,7 @@
 							class="form-control" />
 					</div>
 				</div>
+			 -->
 				<div class="col-xs-8 col-xs-offset-4">
 					<input type="button" value="Reset" ng-click="reset()"
 						class="btn btn-danger" />
@@ -109,21 +134,9 @@
 				</div>
 			</form>
 
-			<br />
-			<div class="alert alert-success" ng-show="success">
-				<span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong>
-				The feedback was successfully saved.
-			</div>
-
-			<div class="alert alert-danger" ng-show="error">
-				<span class="glyphicon glyphicon-remove"></span> <strong>Error!</strong>
-				An error occurred when saving the feedback.
-			</div>
-
 		</div>
 		<div class="col-md-3"></div>
 	</section>
-
 
 	<script src="libs/jquery/dist/jquery.min.js"></script>
 	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
