@@ -16,6 +16,9 @@ angular.module('roadshowApp.controllers', []).controller(
 					$scope.feedback = {};
 					$scope.locations = [ {name:"Stockton"}, {name:"Durham"} ];
 					$scope.statuses = [ {name:"Active"}, {name:"On Hold"}, {name:"Complete"} ];
+					
+					$scope.success = null;
+					$scope.error = null;
 
 					/*$http({
 						method : 'GET',
