@@ -4,8 +4,8 @@ angular.module('roadshowApp.controllers', []).controller('FeedbackController', [
 
 	$log.debug("FeedbackController loaded");
 	$scope.feedback = {};
-	$scope.locations = [];
-	$scope.statuses = [];
+	$scope.locations = ["Stockton", "Durham"];
+	$scope.statuses = ["Active", "On Hold", "Complete"];
 	
 	$http({
         method: 'GET',
@@ -25,9 +25,15 @@ angular.module('roadshowApp.controllers', []).controller('FeedbackController', [
 	$scope.reset = function() {
       $scope.feedback = {};
       $scope.form.$setPristine();
+      $scope.success = null;
+      $scope.error = null;
 	};
 	
 	$scope.sendFeedback = function() {
+		
+		$scope.success = null;
+	    $scope.error = null;
+		
 		$http({
 			method : 'POST',
 			url : 'ws/feedback',
@@ -35,12 +41,17 @@ angular.module('roadshowApp.controllers', []).controller('FeedbackController', [
 		}).then(function successCallback(response) {
 			
 			$log.debug('Sent successfully');
+			$scope.success = true;
+			$scope.feedback = {};
+		    $scope.form.$setPristine();
 		}, function errorCallback(response) {
 
 			$scope.errorMsg = {
 				code : response.status,
 				responseBody : response
 			};
+			
+			$scope.error = true;
 
 			$log.error($scope.errorMsg);
 		});

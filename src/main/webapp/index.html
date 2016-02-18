@@ -6,7 +6,7 @@
 <head>
 <link href="libs/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
 	<div class="page-header">
@@ -14,44 +14,52 @@
 			<nav class="navbar navbar-default nav-link navbar-fixed-top">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<img src="images/AtosLogo.png" alt="Atos Logo" height="80" width="130">
+						<img src="images/AtosLogo.png" alt="Atos Logo" height="80"
+							width="113">
 					</div>
 				</div>
 			</nav>
 		</header>
 	</div>
-	<section class="container">
+	<section class="container-fluid">
 		<div class="page-header">
-			<h3>Feedback Form</h3>
+			<h3>Feedback</h3>
 			<small>Please enter feedback below.</small>
 		</div>
-		<div ng-controller="FeedbackController as feedbackCtrl">
+		<div class="col-md-3"></div>
+		<div class="col-md-6"
+			ng-controller="FeedbackController as feedbackCtrl">
 			<form name="form" role="form">
 				<div class="form-group">
-					<label for="inputName">Name:</label>
-					<input type="text" name="name" id="inputName" ng-model="feedback.name" class="form-control" required/>
-					
-					<div class="help-block" ng-messages="form.name.$error" ng-show="form.name.$touched">
+					<label for="inputName">Name:</label> <input type="text" name="name"
+						id="inputName" ng-model="feedback.name" class="form-control"
+						required />
+
+					<div class="help-block" ng-messages="form.name.$error"
+						ng-show="form.name.$touched">
 						<p ng-message="required">This field is required</p>
 					</div>
-   
+
 				</div>
 				<div class="form-group">
-					<label for="selectLocation">Location:</label>
-					
-					<select ng-model="feedback.location" id="selectLocation" name="location"
-						class="form-control" ng-options="item as item.name for item in locations">
-						
+					<label for="selectLocation">Location:</label> <select
+						ng-model="feedback.location" id="selectLocation" name="location"
+						class="form-control"
+						ng-options="item as item.name for item in locations">
+
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="inputIdNumber">ID Number:</label> <input id="inputIdNumber" class="form-control" type="text"
+					<label for="inputIdNumber">ID Number:</label> <input
+						id="inputIdNumber" class="form-control" type="text"
 						ng-model="feedback.idNumber" name="idNumber" />
 				</div>
 				<div class="form-group">
-					<label for="inputEmail">Email Address:</label> <input class="form-control" id="inputEmail" type="email"
-						ng-model="feedback.email" name="email" required/>
-					<div class="help-block" ng-messages="form.email.$error" ng-show="form.email.$touched">
+					<label for="inputEmail">Email Address:</label> <input
+						class="form-control" id="inputEmail" type="email"
+						ng-model="feedback.email" name="email" required />
+					<div class="help-block" ng-messages="form.email.$error"
+						ng-show="form.email.$touched">
 						<p ng-message="required">This field is required</p>
 						<p ng-message="email">This email address is invalid</p>
 					</div>
@@ -59,19 +67,22 @@
 				<div class="form-group">
 					<label for="inputAction">Action:</label>
 					<div class="controls">
-						<input type="text" ng-model="feedback.action" name="action" id="inputAction" class="form-control" />
+						<input type="text" ng-model="feedback.action" name="action"
+							id="inputAction" class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputActionOwner">Action Owner:</label>
 					<div class="controls">
-						<input type="text" ng-model="feedback.actionOwner" name="actionOwner" id="inputActionOwner" class="form-control" />
+						<input type="text" ng-model="feedback.actionOwner"
+							name="actionOwner" id="inputActionOwner" class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="selectStatus">Status:</label>
 					<div class="controls">
-						<select ng-model="feedback.status" id="selectStatus" name="status" class="form-control"
+						<select ng-model="feedback.status" id="selectStatus" name="status"
+							class="form-control"
 							ng-options="item as item.name for item in statuses">
 						</select>
 					</div>
@@ -79,30 +90,41 @@
 				<div class="form-group">
 					<label for="inputComments">Comments:</label>
 					<div class="controls">
-						<textarea valid-comment="" ng-model="feedback.comments" name="comments" id="inputComments" class="form-control"></textarea>
+						<textarea valid-comment="" ng-model="feedback.comments"
+							name="comments" id="inputComments" class="form-control"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="selectDate">Date:</label>
 					<div class="controls">
-						<input type="date" ng-model="date" name="date" id="selectDate" class="form-control" />
+						<input type="date" ng-model="date" name="date" id="selectDate"
+							class="form-control" />
 					</div>
 				</div>
-				<input type="button" value="Reset" ng-click="reset()" class="btn btn-danger pull-left" />
-				<button ng-click="sendFeedback()" ng-disabled="!form.$valid" class="btn btn-primary pull-right">Send</button>
+				<div class="col-xs-8 col-xs-offset-4">
+					<input type="button" value="Reset" ng-click="reset()"
+						class="btn btn-danger" />
+					<button ng-click="sendFeedback()" ng-disabled="!form.$valid"
+						class="btn btn-primary">Send</button>
+				</div>
 			</form>
+
+			<br />
+			<div class="alert alert-success" ng-show="success">
+				<span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong>
+				The feedback was successfully saved.
+			</div>
+
+			<div class="alert alert-danger" ng-show="error">
+				<span class="glyphicon glyphicon-remove"></span> <strong>Error!</strong>
+				An error occurred when saving the feedback.
+			</div>
+
 		</div>
-		 
-		 <!-- 
-		<div class="alert alert-success fade-in">
-			<strong>Success!</strong> The feedback was successfully saved.
-					</div>
-					 -->
-		<!--
-		<div class="alert alert-danger">
-			<strong>Error!</strong> An error occurred when saving the feedback.
-		</div> -->
+		<div class="col-md-3"></div>
 	</section>
+
+
 	<script src="libs/jquery/dist/jquery.min.js"></script>
 	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
