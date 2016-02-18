@@ -117,20 +117,11 @@
 					</div>
 				</div>
 				
-				<!-- 
-				<div class="form-group">
-					<label for="selectDate">Date:</label>
-					<div class="controls">
-						<input type="date" ng-model="date" name="date" id="selectDate"
-							class="form-control" />
-					</div>
-				</div>
-			 -->
-				<div class="col-xs-8 col-xs-offset-4">
-					<input type="button" value="Reset" ng-click="reset()"
-						class="btn btn-danger" />
-					<button ng-click="sendFeedback()" ng-disabled="!form.$valid"
-						class="btn btn-primary">Send</button>
+				<div class="pull-right">
+					<button type="button" ng-click="reset()"
+						class="btn btn-danger btn-lg">Reset <span class="glyphicon glyphicon-remove"></span></button>
+					<button ng-click="sendFeedback()"
+						class="btn btn-primary btn-lg">Send <span class="glyphicon glyphicon-send"></span></button>
 				</div>
 			</form>
 

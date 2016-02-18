@@ -9,3 +9,23 @@ body {
 .navbar {
 	border-color: #0066A1;
 }
+
+.btn-primary {
+  background-color: #0066A1;
+  border-color: #0066A1;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary  {
+  background-color: #024b5d;
+  border-color: #024b5d;
+}
+
+.btn-danger {
+  background-color: #f65f04;
+  border-color: #f65f04;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger {
+  background-color: #ca4d02;
+  border-color: #ca4d02;
+}
