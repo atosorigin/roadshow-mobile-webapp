@@ -86,4 +86,16 @@ angular.module('roadshowApp.controllers', []).controller(
 						});
 					};
 
-				} ]);
+				} ]).controller('ResultsController', [
+				'$http',
+				'$log',
+				'$scope',
+				function($http, $log, $scope) {
+					
+					
+					$log.debug('ResultsController loaded');
+					
+					// TODO put your code here to load the table using $http service
+					
+					$scope.removeMe = 'Your table goes here';
+				}]);
