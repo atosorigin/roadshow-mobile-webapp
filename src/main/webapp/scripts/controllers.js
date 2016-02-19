@@ -96,17 +96,21 @@ angular.module('roadshowApp.controllers', []).controller(
 				'$log',
 				'$scope',
 				function($http, $log, $scope) {
-					$scope.feedback = [{ "name" : "Mike" , "location" : "Stockton" , "IdNumber" : "123456789" , "email" : "mike.williams@atos.net" , "action" : "To be decided" ,
-		                  "actionOwner" : "Mike" , "status" : "Active" , "comments" : "comments" , "date" : { "$date" : "2016-02-17T10:53:04.422Z"}}, 
-		                  { "location" : { "name" : "Stockton"} , "name" : "Mike" , "idNumber" : "123445" , "email" : "mike.williams@atos.net" ,
-		                  "action" : "Action" , "actionOwner" : "Owner" , "status" : { "name" : "On Hold"} , "comments" : "Comments" , "date" : 
-		                  { "$date" : "2016-02-18T10:43:04.491Z"}}, { "location" : { "name" : "Stockton"} , "name" : "Test" , "idNumber" : "1234456" , 
-		                  "action" : "Action" , "actionOwner" : "Owner" , "status" : { "name" : "Active"} , "comments" : "Comments" , "email" : "test@email.com" ,
-		                  "date" : { "$date" : "2016-02-18T11:51:38.900Z"}}]
+					$scope.feedback = [];
 					
 					$log.debug('ResultsController loaded.');
 					
-					// TODO put your code here to load the table using $http service
+					$http({
+					method : 'GET',
+					url : 'ws/feedback'
+				}).success(function(result) {
+
+					$log.debug("feedback fetched " + result);
+					if (result != undefined && result.length > 0) {
+						// Bug here empty array still gets set to backing values
+						$scope.feedback = result;
+					}
+				});
 					
 					$scope.removeMe = 'Your table goes here';
 				}]);
