@@ -98,7 +98,7 @@ angular.module('roadshowApp.controllers', []).controller(
 				function($http, $log, $scope) {
 					
 					
-					$log.debug('ResultsController loaded');
+					$log.debug('ResultsController loaded.');
 					
 					// TODO put your code here to load the table using $http service
 					
