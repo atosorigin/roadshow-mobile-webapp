@@ -19,6 +19,8 @@ angular.module('roadshowApp.controllers', []).controller(
 					
 					$scope.success = null;
 					$scope.error = null;
+					$scope.sending = false;
+					
 
 					/*$http({
 						method : 'GET',
@@ -55,6 +57,7 @@ angular.module('roadshowApp.controllers', []).controller(
 
 						$scope.success = null;
 						$scope.error = null;
+						$scope.sending = true;
 
 						$http({
 							method : 'POST',
@@ -70,6 +73,7 @@ angular.module('roadshowApp.controllers', []).controller(
 							$location.hash('pageTop');
 
 							$anchorScroll();
+							$scope.sending = false;
 						}, function errorCallback(response) {
 
 							$scope.errorMsg = {
@@ -83,6 +87,7 @@ angular.module('roadshowApp.controllers', []).controller(
 
 							$location.hash('pageTop');
 							$anchorScroll();
+							$scope.sending = false;
 						});
 					};
 
