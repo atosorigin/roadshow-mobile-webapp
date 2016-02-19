@@ -43,9 +43,9 @@ public class FeedbackService {
 			
 			DBObject allQuery = new BasicDBObject();
 			DBObject removeIdProjection = new BasicDBObject("_id", 0);
-			
+					
 			results = db.getCollection(COLLECTION_NAME).find(allQuery, 
-					removeIdProjection);
+					removeIdProjection).sort(new BasicDBObject("date", -1));
 			
 		} finally {
 			db.requestDone();
