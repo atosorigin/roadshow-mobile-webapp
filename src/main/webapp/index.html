@@ -56,12 +56,6 @@
 				<div class="form-group">
 					<label for="inputName">Name:</label> <input type="text" name="name"
 						id="inputName" ng-model="feedback.name" class="form-control" />
-
-					<!-- <div class="help-block" ng-messages="form.name.$error"
-						ng-show="form.name.$touched">
-						<p ng-message="required">This field is required</p>
-					</div> -->
-
 				</div>
 				<div class="form-group">
 					<label for="selectLocation">Location:</label> <select
@@ -78,13 +72,8 @@
 				</div>
 				<div class="form-group">
 					<label for="inputEmail">Email Address:</label> <input
-						class="form-control" id="inputEmail" type="email"
-						ng-model="feedback.email" name="email" />
-					<!-- <div class="help-block" ng-messages="form.email.$error"
-						ng-show="form.email.$touched">
-						<p ng-message="required">This field is required</p>
-						<p ng-message="email">This email address is invalid</p>
-					</div> -->
+						class="form-control" id="inputEmail" type="text"
+						ng-model="feedback.email" name="email" />				
 				</div>
 				<div class="form-group">
 					<label for="inputAction">Action:</label>
