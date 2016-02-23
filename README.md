@@ -19,18 +19,13 @@ This application is a basic example of capturing data in a form and persisting i
 A REST webservice has been implemented with Jersey/Java to handle the form submission. Endpoints are defined as follows:
 
 | URL    | Method |Description |
-|--------|--------|
+|--------|--------|----------|
 | ``ws/feedback`` | ``POST``| Saves provided JSON data to Mongo|
 | ``ws/feedback`` | ``GET`` | Retrieves all saved feedback (order Date descending)|
 | ``ws/locations``| ``GET``| Not used. Retrieves all Locations (for dropdown). Values are currently hardcoded. Future enhancement would be to enable for dynamic options|
 | ``ws/statuses``| ``GET``| Not used. Retrieves all Statuses (for dropdown). See above|
 
 This application is built/deployed & hosted with Redhat OpenShift (http://www.openshift.com).
-
-| Instance | URL |
-|--------|--------|
-| Production       | http://roadshow-dwptechsurgery.rhcloud.com/ , http://roadshow-dwptechsurgery.rhcloud.com/results.html       |
-| Development       | http://roadshowdev-dwptechsurgery.rhcloud.com/ , http://roadshowdev-dwptechsurgery.rhcloud.com/results.html       |
 
 Notes:
 
